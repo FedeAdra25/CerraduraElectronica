@@ -5,7 +5,7 @@
  *  Author: jeron
  */ 
 #include "MEF.h"
-#include "KeypadScanLib.h"
+#include "keypadScan.h"
 #include "lcd.h"
 #include "timer.h"
 #include <stdlib.h>
