@@ -5,9 +5,9 @@
  * Compiler:  Keil for ARM
  */
 
-#include <stm32f103x6.h>
+#include <stm32f10x.h>
 #include <string.h>
-
+#include "keypadScan.h"
 
 /*CABECERAS*/
 void delay_us (uint16_t t);
@@ -44,7 +44,7 @@ void delay_us (uint16_t t)
  *  Author: fedea
  */
 
-#include "KeypadScanLib.h"
+
 
 
 

@@ -16,31 +16,161 @@ Linker/Locator:  ArmLink.exe V6.16
 Library Manager: ArmAr.exe V6.16
 Hex Converter:   FromElf.exe V6.16
 CPU DLL:         SARMCM3.DLL V5.35.0.2
-Dialog DLL:      DARMST.DLL V1.19.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
 Target DLL:      UL2CM3.DLL V1.164.0.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 H:\Fede\Facultad\2021\2do cuatrimestre\Taller de proyecto I\Prácticas\Práctica 1\Project\CerraduraElectronica.uvprojx
-Project File Date:  09/11/2021
+Project File Date:  09/12/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-main.c(22): warning: no newline at end of file [-Wnewline-eof]
-}
+MEF.c(8): warning: In file included from...
+./keypadScan.h(50): warning: this function declaration is not a prototype [-Wstrict-prototypes]
+void KEYPAD_Init();
+                ^
+                 void
+./keypadScan.h(56): warning: no newline at end of file [-Wnewline-eof]
+ 
  ^
-main.c(20): warning: 'return' will never be executed [-Wunreachable-code-return]
-        return 0;
-               ^
-2 warnings generated.
-compiling main.c...
-linking...
-Program Size: Code=720 RO-data=252 RW-data=0 ZI-data=1632  
-FromELF: creating hex file...
-".\Objects\CerraduraElectronica.axf" - 0 Error(s), 2 Warning(s).
+MEF.c(9): warning: In file included from...
+./lcd.h(15): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+MEF.c(10): error: 'timer.h' file not found
+#include "timer.h"
+         ^~~~~~~~~
+3 warnings and 1 error generated.
+compiling MEF.c...
+keypadScan.c(10): warning: In file included from...
+./keypadScan.h(50): warning: this function declaration is not a prototype [-Wstrict-prototypes]
+void KEYPAD_Init();
+                ^
+                 void
+./keypadScan.h(56): warning: no newline at end of file [-Wnewline-eof]
+ 
+ ^
+keypadScan.c(68): warning: no previous prototype for function 'KEYPAD_Init' [-Wmissing-prototypes]
+void KEYPAD_Init(){
+     ^
+./keypadScan.h(50): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+void KEYPAD_Init();
+     ^
+                 void
+keypadScan.c(68): warning: this old-style function definition is not preceded by a prototype [-Wstrict-prototypes]
+void KEYPAD_Init(){
+                ^
+keypadScan.c(112): error: use of undeclared identifier 'PORTD'
+                KEYPAD_PORT&=aux[i];                            //va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA
+                ^
+./keypadScan.h(34): note: expanded from macro 'KEYPAD_PORT'
+        #define KEYPAD_PORT PORTD
+                            ^
+keypadScan.c(113): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
+                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
+        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
+                                         ^
+keypadScan.c(113): note: place parentheses around the assignment to silence this warning
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
+                                    ^
+                   (                            )
+./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
+        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
+                                         ^
+keypadScan.c(113): note: use '==' to turn this assignment into an equality comparison
+./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
+        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
+                                         ^
+keypadScan.c(113): error: use of undeclared identifier 'PIND'
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
+                    ^
+./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
+        #define KEYPAD_PIN PIND
+                           ^
+keypadScan.c(118): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
+                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
+        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
+                                         ^
+keypadScan.c(118): note: place parentheses around the assignment to silence this warning
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
+                                    ^
+                   (                            )
+./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
+        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
+                                         ^
+keypadScan.c(118): note: use '==' to turn this assignment into an equality comparison
+./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
+        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
+                                         ^
+keypadScan.c(118): error: use of undeclared identifier 'PIND'
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
+                    ^
+./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
+        #define KEYPAD_PIN PIND
+                           ^
+keypadScan.c(123): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
+                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
+        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
+                                         ^
+keypadScan.c(123): note: place parentheses around the assignment to silence this warning
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
+                                    ^
+                   (                            )
+./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
+        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
+                                         ^
+keypadScan.c(123): note: use '==' to turn this assignment into an equality comparison
+./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
+        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
+                                         ^
+keypadScan.c(123): error: use of undeclared identifier 'PIND'
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
+                    ^
+./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
+        #define KEYPAD_PIN PIND
+                           ^
+keypadScan.c(128): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
+                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
+        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
+                                         ^
+keypadScan.c(128): note: place parentheses around the assignment to silence this warning
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
+                                    ^
+                   (                            )
+./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
+        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
+                                         ^
+keypadScan.c(128): note: use '==' to turn this assignment into an equality comparison
+./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
+        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
+                                         ^
+keypadScan.c(128): error: use of undeclared identifier 'PIND'
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
+                    ^
+./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
+        #define KEYPAD_PIN PIND
+                           ^
+8 warnings and 5 errors generated.
+compiling keypadScan.c...
+".\Objects\CerraduraElectronica.axf" - 6 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.3.0.pack
@@ -51,15 +181,19 @@ Package Vendor: Keil
 <h2>Collection of Component include folders:</h2>
   .\RTE\Device\STM32F103C8
   .\RTE\_Target_1
+  C:\Users\fedea\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
   C:\Users\fedea\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
+   * Component: ARM::CMSIS:CORE:5.5.0
+
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
-      Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Source file:   Device\Source\system_stm32f10x.c
+Target not created.
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

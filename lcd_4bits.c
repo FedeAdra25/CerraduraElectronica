@@ -5,7 +5,7 @@
  * Compiler:  Keil for ARM
  */
 
-#include <stm32f103x6.h>
+#include <stm32f10x.h>
 #include <string.h>
 
 #define LCD_RS 4
@@ -23,27 +23,6 @@ void lcd_string(char* data, uint8_t nBytes);
 
 uint8_t string_len(char* data);
 
-
-
-int main (void)
- { 
-   // Write your code here
-   
-    RCC->APB2ENR |= 0xFC;        /* Enable clocks for GPIO ports */
-    GPIOA->CRL = 0x44333333;    /* PA0-PA7 as outputs */
-    
-    //4 indica Entrada de Alta Impedancia.
-    //3 Indica Salida
-    //8 Indica Entrada
-    
-    lcd_init();
-    
-
-    lcd_string("TESTEANDO HOLA",11);
-    
-    
-   while (1){ }
- }   
 
 void delay_us (uint16_t t)
 {
