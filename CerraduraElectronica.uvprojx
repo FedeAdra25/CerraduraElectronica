@@ -388,6 +388,16 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>MEF.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MEF.c</FilePath>
+            </File>
+            <File>
+              <FileName>MEF.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MEF.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
