@@ -18,7 +18,8 @@ int main (void)
    // Write your code here
    
     RCC->APB2ENR |= 0xFC;        /* Enable clocks for GPIO ports */
-    GPIOA->CRL = 0x44333333;    /* PA0-PA7 as outputs */
+    //GPIOA->CRL = 0x44333333;    // PA0-PA7 as outputs => Esto no va, los pines los usa el LCD
+	//Los de keypad los usas en KEYPAD_init
     
     //4 indica Entrada de Alta Impedancia.
     //3 Indica Salida
