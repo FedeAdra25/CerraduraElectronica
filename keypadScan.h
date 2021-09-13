@@ -31,18 +31,19 @@ Librería para leer teclado matricial
 //Configuracion del puerto que usa el teclado
 //Cambiar todos los define si se quiere cambiar el puerto
 //*************************
-	#define KEYPAD_PORT PORTD
-	#define KEYPAD_DDR DDRD
-	#define KEYPAD_PIN PIND
+	#define KEYPAD_PORT GPIOA->CRH
+	//#define KEYPAD_DDR DDRD
+	#define KEYPAD_PIN GPIOA->IDR
 	
-	#define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)		//PA8
-	#define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)		//PA9
-	#define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)	// ...
-	#define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
-	#define KEYPAD_PORT4 GPIOA->BSRR = (1<<12)
-	#define KEYPAD_PORT5 GPIOA->BSRR = (1<<13)
-	#define KEYPAD_PORT6 GPIOA->BSRR = (1<<14)
-	#define KEYPAD_PORT7 GPIOA->BSRR = (1<<15)	//PA15
+	//#define KEYPAD_PORT0 GPIOA->BSRR & (1<<8)		//PA8
+	#define KEYPAD_PORT0 (1<<8)		//PA8
+	#define KEYPAD_PORT1 (1<<9)
+	#define KEYPAD_PORT2 (1<<10)
+	#define KEYPAD_PORT3 (1<<11)
+	#define KEYPAD_PORT4 (1<<12)
+	#define KEYPAD_PORT5 (1<<13)
+	#define KEYPAD_PORT6 (1<<14)
+	#define KEYPAD_PORT7 (1<<15)
 //*************************
 
 
@@ -52,5 +53,4 @@ void KEYPAD_Init();
 uint8_t KEYPAD_Scan (uint8_t *pkey); //funcion para escanear con doble verificacion y memoria
 
 
-#endif /* KEYPADSCANLIB_H_ */
- 
+#endif /* KEYPADSCANLIB_H_ */ 

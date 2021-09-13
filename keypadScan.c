@@ -5,19 +5,22 @@
  * Compiler:  Keil for ARM
  */
 
-#include <stm32f10x.h>
+#include <stm32f1xx.h>
 #include <string.h>
-#include "keypadScan.h"
+#include <keypadScan.h>
 
 /*CABECERAS*/
 void delay_us (uint16_t t);
 
+unsigned char a ;
 
 int main (void)
  { 
    // Write your code here
    
     RCC->APB2ENR |= 0xFC;        /* Enable clocks for GPIO ports */
+    KEYPAD_Init();
+    
     //GPIOA->CRL = 0x44333333;    // PA0-PA7 as outputs => Esto no va, los pines los usa el LCD
 	//Los de keypad los usas en KEYPAD_init
     
@@ -27,7 +30,11 @@ int main (void)
 
     
     
-   while (1){ }
+   while (1){ 
+	 
+	KEYPAD_Scan(&a);
+	 delay_us(3000);
+      }
  }   
 
 void delay_us (uint16_t t)
@@ -67,9 +74,9 @@ static uint8_t getKeyPressed(uint8_t *key);
 FUNCION PARA INICIALIZAR EL TECLADO MATRICIAL
 ********************************************************/
 void KEYPAD_Init(){
-	 GPIOA->CRH = 0x44883333;    /* PA8-PA11 as Outputs && PA12-PA15 as Inputs*/
+	 GPIOA->CRH = 0x88883333;    /* PA8-PA11 as Outputs (FILAS) && PA12-PA15 as Inputs (COLUMNAS)*/
    
-	//KEYPAD_DDR = 0xF0; //inicializo filas como salidas columnas como entradas
+	//KEYPAD_DDR = 0xF0; //inicializo "filas como salidas", columnas como entradas
 	//KEYPAD_PORT = 0x0F; //activo pullup intenro
 }
 
@@ -101,32 +108,33 @@ uint8_t KEYPAD_Scan (uint8_t *pkey)
 	return 0;
 }
 
-
+//BARRIDO
 static uint8_t getKeyPressed(uint8_t *key)
 {
-	const uint8_t aux[4]={0x7F,0xBF,0xDF,0xEF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
+	const uint16_t aux[4]={0x7FFF,0xBFFF,0xDFFF,0xEFFF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
 	uint8_t i;
 	
 	//KEYPAD_PORT|=0xF0;	//¿Que hago con el PullUp interno? 0b11110000 era de los pines de PD0 a PD3, activo pull up en los pines PA8-PA11??
-	
+	GPIOA->CRH = 0x88883333;	//verificar.
+
 	for(i=0;i<4;i++){
-		KEYPAD_PORT&=aux[i]; 				//va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA
-		if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
+		GPIOA->ODR = aux[i]; 				//va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA	0111 1111
+		if(~KEYPAD_PIN & KEYPAD_PORT0){		//KEYPAD_PIN es GPIOA->IDR	1er iteracion 0111 1111 1111 1111 & 1000 0000 0000 0000
 			//1 en Pin D0
 			*key=teclas[i][0];
 			return 1;
 		}
-		if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
+		if(~KEYPAD_PIN & KEYPAD_PORT1){
 			//1 en Pin D1
 			*key=teclas[i][1];
 			return 1;
 		}
-		if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
+		if(~KEYPAD_PIN & KEYPAD_PORT2){
 			//1 en Pin D2
 			*key=teclas[i][2];
 			return 1;
 		}
-		if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
+		if(~KEYPAD_PIN & KEYPAD_PORT3){
 			//1 en Pin D3
 			*key=teclas[i][3];
 			return 1;
