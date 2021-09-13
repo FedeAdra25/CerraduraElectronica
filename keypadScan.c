@@ -11,15 +11,7 @@
 #include <stm32f10x.h>
 #include <string.h>
 #include "keypadScan.h"
-
-void delay_us (uint16_t t)
-{
-  volatile unsigned long l = 0;
-  uint16_t i;
-  for( i= 0; i < t; i++)
-  for(l = 0; l < 6; l++){
-  }
-}
+#include "utils.h"
 
 //Definicion de variable global privada
 static const uint8_t teclas[4][4]= {

@@ -7,6 +7,7 @@
 
 #include <stm32f10x.h>
 #include "lcd.h"
+#include "utils.h" //Delay timer
 
 /*
 //Cabecera de string_len, que igualmente no se utiliza
@@ -20,57 +21,59 @@ uint8_t string_len(char* data){
     return ret;
  }
  */
- 
+ //Cabecera de función privada
+ void LCDputValue(uint8_t value);
 
 /*Outputs string to LCD.
 Receives the String + the size of the String in Characters*/
-void lcd_string(char* data, uint8_t nBytes)	
+void LCDstring(uint8_t* data, uint8_t nBytes)	
 {
 uint8_t i;
    
 	if (!data) return;			//check to make sure we have a good pointer
 	 
 	for(i=0; i<nBytes; i++){		//Print data in LCD
-		lcd_sendData(data[i]);
+		LCDsendChar(data[i]);
 	}
 }
 
 //Inicializacion del LCD en modo 4 bits
-void lcd_init(){  
+//¡¡Setea los pines!!
+void LCDinit(){  
    
   LCD_PORT = 0x44333333;    		/* PA0-PA7 as outputs */
   LCD_PIN_OUT &= ~(1<<LCD_EN);  	//LCD_EN=0
 
   delay_us(3000);              			//Delay de 3ms
-  lcd_sendCommand(0x33);          		//Send $33 for init
-  lcd_sendCommand(0x32);          		//Send $32 for init
-  lcd_sendCommand(0x28);          		//Init LCD 2 line, 5x7 Matrix
-  lcd_sendCommand(0x0e);          		//Display On, Curson On
-  lcd_sendCommand(0x01);          		//Clear LCD
+  LCDsendCommand(0x33);          		//Send $33 for init
+  LCDsendCommand(0x32);          		//Send $32 for init
+  LCDsendCommand(0x28);          		//Init LCD 2 line, 5x7 Matrix
+  LCDsendCommand(0x0e);          		//Display On, Curson On
+  LCDsendCommand(0x01);          		//Clear LCD
 
   delay_us(2000);              			//Delay de 2ms
-  lcd_sendCommand(0x06);          		//Shift Cursor Right
+  LCDsendCommand(0x06);          		//Shift Cursor Right
 }
 
 //Codigo para enviar un comando al LCD
-void lcd_sendCommand (uint8_t cmd)
+void LCDsendCommand (uint8_t cmd)
 {
    LCD_PORT_BRR = (1<<LCD_RS); /* RS = 0 for command */	
-   lcd_putValue(cmd);
+   LCDputValue(cmd);
 }
 
 //Codigo para enviar un Char al LCD
-void lcd_sendData (uint8_t data)
+void LCDsendChar (uint8_t data)
 {
    LCD_PORT_BSRR = (1<<LCD_RS); /* RS = 1 for data */
-   lcd_putValue(data);
+   LCDputValue(data);
 }
 
 /* Codigo para enviar valores al LCD.
 Funciona en 4 bits. Primero envia la parte superior,
 y luego envia la parte inferior del dato.
 */
-void lcd_putValue(unsigned char value)
+void LCDputValue(unsigned char value)
 {
    LCD_PORT_BRR = 0x0F;                 			/* clear PA0-PA3 */
    LCD_PORT_BSRR = (value>>4)&0x0F;     		/* put high nibble on PA0-PA3 */
@@ -86,3 +89,17 @@ void lcd_putValue(unsigned char value)
    LCD_PIN_OUT &= ~(1<<LCD_EN);         		/* EN = 0 for H-to-L pulse */
    delay_us(100);                       				/* wait */
 }
+
+//Cursor to X Y position
+void LCDGotoXY(uint8_t, uint8_t){
+	
+}
+//Clears LCD
+void LCDclr(void){
+	
+}
+//Cursor OFF
+void LCDcursorOFF(void){
+	
+}
+

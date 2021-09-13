@@ -69,8 +69,6 @@ ODR corresponde al Output Data Register
 //CABECERAS
 void KEYPAD_Init(void);
 
-void delay_us (uint16_t t);
-
 //funcion para escanear con doble verificacion y memoria
 uint8_t KEYPAD_Scan (uint8_t *pkey); 
 

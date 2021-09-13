@@ -19,13 +19,33 @@
 #define LCD_EN 5
 
 /*CABECERAS*/
-
-void delay_us (uint16_t t);
 uint8_t string_len(char* data);
-void lcd_init(void);
-void lcd_sendData (uint8_t data);
-void lcd_sendCommand (uint8_t cmd);
-void lcd_putValue (uint8_t value);
-void lcd_string(char* data, uint8_t nBytes);
+void LCDinit(void);			//Initializes LCD
+void LCDsendChar(uint8_t);		//forms data ready to send to 74HC164
+void LCDsendCommand(uint8_t);	//forms data ready to send to 74HC164
+//void lcd_putValue (uint8_t value); la moví porque es privada
+void LCDstring(uint8_t*, uint8_t);	//Outputs string to LCD
+
+//TODO - Son necesarias para la MEF
+void LCDGotoXY(uint8_t, uint8_t);	//Cursor to X Y position
+void LCDclr(void);				//Clears LCD
+void LCDcursorOFF(void);		//Cursor OFF
+
+/*
+//En un futuro owo
+void LCDhome(void);			//LCD cursor home
+void LCDescribeDato(int val,unsigned int field_length); // Agrego Funcion para escribir Enteros
+void CopyStringtoLCD(const uint8_t*, uint8_t, uint8_t);//copies flash string to LCD at x,y
+void LCDdefinechar(const uint8_t *,uint8_t);//write char to LCD CGRAM 
+void LCDshiftRight(uint8_t);	//shift by n characters Right
+void LCDshiftLeft(uint8_t);	//shift by n characters Left
+void LCDcursorOn(void);		//Underline cursor ON
+void LCDcursorOnBlink(void);	//Underline blinking cursor ON
+void LCDblank(void);			//LCD blank but not cleared
+void LCDvisible(void);			//LCD visible
+void LCDcursorLeft(uint8_t);	//Shift cursor left by n
+void LCDcursorRight(uint8_t);	//shif cursor right by n
+*/
+
 #endif
 

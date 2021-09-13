@@ -25,14 +25,12 @@ int main (void)
     
     //Inicializo los perifericos
     KEYPAD_Init();
-    lcd_init();
+    LCDinit();
     
-    lcd_string("TESTEANDO HOLA",11);
+    LCDstring("TESTEANDO HOLA",11);
     
    while (1){ 
-	 
-	KEYPAD_Scan(&a);	//en la variable 'a' se guarda la tecla leida por teclado
-	 delay_us(300);
-      
-      }
- }   
+		 KEYPAD_Scan(&a);	//en la variable 'a' se guarda la tecla leida por teclado
+		 delay_us(300);
+	 }
+ }
