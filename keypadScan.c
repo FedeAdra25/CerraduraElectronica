@@ -5,10 +5,22 @@
  * Compiler:  Keil for ARM
  */
 
-#include <stm32f10x.h>
+#include <stm32f1xx.h>
 #include <string.h>
-#include "keypadScan.h"
+#include <keypadScan.h>
 
+/*CABECERAS*/
+
+
+
+void delay_us (uint16_t t)
+{
+  volatile unsigned long l = 0;
+  uint16_t i;
+  for( i= 0; i < t; i++)
+  for(l = 0; l < 6; l++){
+  }
+}
 /*
  * KeypadScanLib.c
  *
@@ -38,7 +50,7 @@ static uint8_t getKeyPressed(uint8_t *key);
 FUNCION PARA INICIALIZAR EL TECLADO MATRICIAL
 ********************************************************/
 void KEYPAD_Init(){
-	 GPIOA->CRH = 0x33338888;    /* PA8-PA11 as Outputs && PA12-PA15 as Inputs*/
+	 GPIOA->CRH = 0x33338888;    /* PA8-PA11 as Outputs (FILAS) && PA12-PA15 as Inputs (COLUMNAS)*/
    
 	//KEYPAD_DDR = 0xF0; //inicializo "filas como salidas", columnas como entradas
 	//KEYPAD_PORT = 0x0F; //activo pullup intenro
@@ -61,32 +73,33 @@ uint8_t KEYPAD_Scan (uint8_t *pkey)
 		Last_valid_key=0xFF;
 		return 0;
 	}
-	if(Key==Old_key) { //2da verificación
-		if(Key!=Last_valid_key){ //evita múltiple detección
+	if(Key==Old_key) { //2da verificaciÃ³n
+		if(Key!=Last_valid_key){ //evita mÃºltiple detecciÃ³n
 			*pkey=Key;
 			Last_valid_key = Key;
 			return 1;
 		}
 	}
-	Old_key=Key; //1era verificación
+	Old_key=Key; //1era verificaciÃ³n
 	return 0;
 }
 
 //BARRIDO
 static uint8_t getKeyPressed(uint8_t *key)
 {
-	const uint32_t aux[4]={0x00007FFF,0x0000BFFF,0x0000DFFF,0x0000EFFF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
+	const uint16_t aux[4]={0x7FFF,0xBFFF,0xDFFF,0xEFFF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
 	uint8_t i;
 	uint32_t temp =  GPIOA->ODR;
 	
-	//KEYPAD_PORT|=0xF0;	//¿Que hago con el PullUp interno? 0b11110000 era de los pines de PD0 a PD3, activo pull up en los pines PA8-PA11??
+	//KEYPAD_PORT|=0xF0;	//Â¿Que hago con el PullUp interno? 0b11110000 era de los pines de PD0 a PD3, activo pull up en los pines PA8-PA11??
 	GPIOA->CRH = 0x33338888;	//verificar.
 	
 	
 
 	for(i=0;i<4;i++){
 		GPIOA->ODR = aux[i]; 				//va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA	0111 1111
-		if(~KEYPAD_PIN & KEYPAD_PORT0){		//KEYPAD_PIN es GPIOA->IDR	1er iteracion 0111 1111 1111 1111 & 1000 0000 0000 0000
+	       
+		if(~KEYPAD_PIN & KEYPAD_PORT0){		//KEYPAD_PIN es GPIOA->IDR	1er iteracion ~0111 1111 1111 1111 & 1000 0000 0000 0000
 			//1 en Pin D0
 			*key=teclas[i][0];
 			return 1;
