@@ -6,28 +6,11 @@
  */
 
 #include <stm32f10x.h>
-#include <string.h>
 #include "lcd.h"
-#define LCD_RS 4
-#define LCD_RW 6
-#define LCD_EN 5
 
-
-
-
-
-void delay_us (uint16_t t)
-{
-  volatile unsigned long l = 0;
-  uint16_t i;
-  for( i= 0; i < t; i++)
-  for(l = 0; l < 6; l++){
-  }
-}
-
-
-
-//devuelve el tamaño de la String
+/*
+//Cabecera de string_len, que igualmente no se utiliza
+uint8_t string_len(char* data);
 
 uint8_t string_len(char* data){
     
@@ -36,68 +19,70 @@ uint8_t string_len(char* data){
         ret++;
     return ret;
  }
+ */
+ 
 
-//Recibe una String, calcula su tamaño y lo imprime en pantalla.
-void lcd_string(char* data)	//Outputs string to LCD
+/*Outputs string to LCD.
+Receives the String + the size of the String in Characters*/
+void lcd_string(char* data, uint8_t nBytes)	
 {
-uint8_t i,nBytes;
-
-	//check to make sure we have a good pointer
-	if (!data) return;
-	  
-	//Numero de Bytes a imprimir
-	nBytes = string_len(data);
-
-	// print data
-	for(i=0; i<nBytes; i++)
-	{
+uint8_t i;
+   
+	if (!data) return;			//check to make sure we have a good pointer
+	 
+	for(i=0; i<nBytes; i++){		//Print data in LCD
 		lcd_sendData(data[i]);
 	}
 }
 
-//MODO 4 BITS
+//Inicializacion del LCD en modo 4 bits
 void lcd_init(){  
+   
+  LCD_PORT = 0x44333333;    		/* PA0-PA7 as outputs */
+  LCD_PIN_OUT &= ~(1<<LCD_EN);  	//LCD_EN=0
 
-  GPIOA->ODR &= ~(1<<LCD_EN);  //LCD_EN=0
+  delay_us(3000);              			//Delay de 3ms
+  lcd_sendCommand(0x33);          		//Send $33 for init
+  lcd_sendCommand(0x32);          		//Send $32 for init
+  lcd_sendCommand(0x28);          		//Init LCD 2 line, 5x7 Matrix
+  lcd_sendCommand(0x0e);          		//Display On, Curson On
+  lcd_sendCommand(0x01);          		//Clear LCD
 
-  delay_us(3000);              		//Delay de 3ms
-  lcd_sendCommand(0x33);          //Send $33 for init
-  lcd_sendCommand(0x32);          //Send $32 for init
-  lcd_sendCommand(0x28);          //Init LCD 2 line, 5x7 Matrix
-  lcd_sendCommand(0x0e);          //Display On, Curson On
-  lcd_sendCommand(0x01);          //Clear LCD
-
-  delay_us(2000);              		//Delay de 2ms
-  lcd_sendCommand(0x06);          //Shift Cursor Right
+  delay_us(2000);              			//Delay de 2ms
+  lcd_sendCommand(0x06);          		//Shift Cursor Right
 }
 
+//Codigo para enviar un comando al LCD
 void lcd_sendCommand (uint8_t cmd)
 {
-   GPIOA->BRR = (1<<LCD_RS); // RS = 0 for command 
+   LCD_PORT_BRR = (1<<LCD_RS); /* RS = 0 for command */	
    lcd_putValue(cmd);
 }
 
+//Codigo para enviar un Char al LCD
 void lcd_sendData (uint8_t data)
 {
-   GPIOA->BSRR = (1<<LCD_RS); // RS = 1 for data
+   LCD_PORT_BSRR = (1<<LCD_RS); /* RS = 1 for data */
    lcd_putValue(data);
 }
 
+/* Codigo para enviar valores al LCD.
+Funciona en 4 bits. Primero envia la parte superior,
+y luego envia la parte inferior del dato.
+*/
 void lcd_putValue(unsigned char value)
 {
-  GPIOA->BRR = 0x0F;                 			// clear PA0-PA3 
-  GPIOA->BSRR = (value>>4)&0x0F;     		// put high nibble on PA0-PA3 
-  GPIOA->ODR |= (1<<LCD_EN);        	 	// EN = 1 for H-to-L pulse 
-  delay_us(1);                       				// make EN pulse wider. You can use delay_us(2); too 
-  GPIOA->ODR &= ~(1<<LCD_EN);       		// EN = 0 for H-to-L pulse 
-  delay_us(100);                       			// wait 
+   LCD_PORT_BRR = 0x0F;                 			/* clear PA0-PA3 */
+   LCD_PORT_BSRR = (value>>4)&0x0F;     		/* put high nibble on PA0-PA3 */
+   LCD_PIN_OUT |= (1<<LCD_EN);        	 		/* EN = 1 for H-to-L pulse */
+   delay_us(1);                       					/* make EN pulse wider. You can use delay_us(2); too */
+   LCD_PIN_OUT &= ~ (1<<LCD_EN);       		/* EN = 0 for H-to-L pulse */
+   delay_us(100);                       				/* wait */
 
-  GPIOA->BRR = 0x0F;                 			// clear PA0-PA3 
-  GPIOA->BSRR = value&0x0F;          	 	// put low nibble on PA0-PA3 
-  GPIOA->ODR |= (1<<LCD_EN);         		// EN = 1 for H-to-L pulse 
-  delay_us(1);                       				// make EN pulse wider 
-  GPIOA->ODR &= ~(1<<LCD_EN);         	// EN = 0 for H-to-L pulse 
-  delay_us(100);                       			// wait 
+   LCD_PORT_BRR = 0x0F;                 			/* clear PA0-PA3 */
+   LCD_PORT_BSRR = value&0x0F;          	 	/* put low nibble on PA0-PA3 */
+   LCD_PIN_OUT |= (1<<LCD_EN);         			/* EN = 1 for H-to-L pulse */
+   delay_us(1);                       					/* make EN pulse wider */
+   LCD_PIN_OUT &= ~(1<<LCD_EN);         		/* EN = 0 for H-to-L pulse */
+   delay_us(100);                       				/* wait */
 }
-
-

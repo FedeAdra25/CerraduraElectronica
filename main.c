@@ -5,15 +5,16 @@
  * Compiler:  Keil for ARM
  */
 
-#include <stm32f1xx.h>
+#include <stm32f10x.h>
 
-#include <keypadScan.h>
-#include <lcd_4bits.h>
+#include "keypadScan.h"
+#include "lcd.h"
 
-uint8_t a ;
+
 
 int main (void)
  { 
+	 uint8_t a;
     //4 indica Entrada de Alta Impedancia.
     //3 Indica Salida
     //8 Indica Entrada

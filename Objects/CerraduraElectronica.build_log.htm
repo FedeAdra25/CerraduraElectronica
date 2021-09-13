@@ -34,17 +34,16 @@ MEF.c(263): warning: ISO C requires a translation unit to contain at least one d
 2 warnings generated.
 compiling MEF.c...
 compiling main.c...
-compiling keypadScan.c...
 assembling startup_stm32f10x_md.s...
-lcd.c(61): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-  GPIOA->ODR &= ~(1<<LCD_EN);  //LCD_EN=0
-             ~~ ^~~~~~~~~~~~
-lcd.c(92): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-  GPIOA->ODR &= ~(1<<LCD_EN);                   // EN = 0 for H-to-L pulse 
-             ~~ ^~~~~~~~~~~~
-lcd.c(99): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-  GPIOA->ODR &= ~(1<<LCD_EN);           // EN = 0 for H-to-L pulse 
-             ~~ ^~~~~~~~~~~~
+lcd.c(42): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+  LCD_PIN_OUT &= ~(1<<LCD_EN);          //LCD_EN=0
+              ~~ ^~~~~~~~~~~~
+lcd.c(79): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+   LCD_PIN_OUT &= ~ (1<<LCD_EN);                /* EN = 0 for H-to-L pulse */
+               ~~ ^~~~~~~~~~~~~
+lcd.c(86): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+   LCD_PIN_OUT &= ~(1<<LCD_EN);                         /* EN = 0 for H-to-L pulse */
+               ~~ ^~~~~~~~~~~~
 3 warnings generated.
 compiling lcd.c...
 RTE/Device/STM32F103C8/system_stm32f10x.c(167): warning: no previous extern declaration for non-static variable 'AHBPrescTable' [-Wmissing-variable-declarations]
@@ -55,8 +54,9 @@ __I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9}
     ^
 1 warning generated.
 compiling system_stm32f10x.c...
+compiling keypadScan.c...
 linking...
-Program Size: Code=648 RO-data=252 RW-data=0 ZI-data=1632  
+Program Size: Code=1236 RO-data=284 RW-data=4 ZI-data=1640  
 ".\Objects\CerraduraElectronica.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -84,10 +84,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Include file:  RTE_Driver\Config\RTE_Device.h
-      Source file:   Device\Source\system_stm32f10x.c
-      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Source file:   Device\Source\system_stm32f10x.c
+      Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
 Build Time Elapsed:  00:00:00
 </pre>
 </body>
