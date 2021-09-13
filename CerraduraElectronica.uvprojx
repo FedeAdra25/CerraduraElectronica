@@ -404,11 +404,6 @@
               <FilePath>.\lcd.h</FilePath>
             </File>
             <File>
-              <FileName>lcd_4bits.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\lcd_4bits.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
@@ -422,6 +417,11 @@
               <FileName>MEF.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\MEF.h</FilePath>
+            </File>
+            <File>
+              <FileName>timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\timer.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -22,147 +22,35 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 H:\Fede\Facultad\2021\2do cuatrimestre\Taller de proyecto I\Prácticas\Práctica 1\Project\CerraduraElectronica.uvprojx
-Project File Date:  09/12/2021
+Project File Date:  09/13/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'Target 1'
-MEF.c(8): warning: In file included from...
-./keypadScan.h(50): warning: this function declaration is not a prototype [-Wstrict-prototypes]
-void KEYPAD_Init();
-                ^
-                 void
-./keypadScan.h(56): warning: no newline at end of file [-Wnewline-eof]
- 
- ^
-MEF.c(9): warning: In file included from...
-./lcd.h(15): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
-MEF.c(10): error: 'timer.h' file not found
-#include "timer.h"
-         ^~~~~~~~~
-3 warnings and 1 error generated.
+Rebuild target 'Target 1'
+MEF.c(263): warning: no newline at end of file [-Wnewline-eof]
+        
+        ^
+MEF.c(263): warning: ISO C requires a translation unit to contain at least one declaration [-Wempty-translation-unit]
+2 warnings generated.
 compiling MEF.c...
-keypadScan.c(10): warning: In file included from...
-./keypadScan.h(50): warning: this function declaration is not a prototype [-Wstrict-prototypes]
-void KEYPAD_Init();
-                ^
-                 void
-./keypadScan.h(56): warning: no newline at end of file [-Wnewline-eof]
- 
- ^
-keypadScan.c(68): warning: no previous prototype for function 'KEYPAD_Init' [-Wmissing-prototypes]
-void KEYPAD_Init(){
-     ^
-./keypadScan.h(50): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
-void KEYPAD_Init();
-     ^
-                 void
-keypadScan.c(68): warning: this old-style function definition is not preceded by a prototype [-Wstrict-prototypes]
-void KEYPAD_Init(){
-                ^
-keypadScan.c(112): error: use of undeclared identifier 'PORTD'
-                KEYPAD_PORT&=aux[i];                            //va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA
-                ^
-./keypadScan.h(34): note: expanded from macro 'KEYPAD_PORT'
-        #define KEYPAD_PORT PORTD
-                            ^
-keypadScan.c(113): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
-                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
-        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
-                                         ^
-keypadScan.c(113): note: place parentheses around the assignment to silence this warning
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
-                                    ^
-                   (                            )
-./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
-        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
-                                         ^
-keypadScan.c(113): note: use '==' to turn this assignment into an equality comparison
-./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
-        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
-                                         ^
-keypadScan.c(113): error: use of undeclared identifier 'PIND'
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
-                    ^
-./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
-        #define KEYPAD_PIN PIND
-                           ^
-keypadScan.c(118): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
-                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
-        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
-                                         ^
-keypadScan.c(118): note: place parentheses around the assignment to silence this warning
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
-                                    ^
-                   (                            )
-./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
-        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
-                                         ^
-keypadScan.c(118): note: use '==' to turn this assignment into an equality comparison
-./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
-        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
-                                         ^
-keypadScan.c(118): error: use of undeclared identifier 'PIND'
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
-                    ^
-./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
-        #define KEYPAD_PIN PIND
-                           ^
-keypadScan.c(123): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
-                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
-        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
-                                         ^
-keypadScan.c(123): note: place parentheses around the assignment to silence this warning
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
-                                    ^
-                   (                            )
-./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
-        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
-                                         ^
-keypadScan.c(123): note: use '==' to turn this assignment into an equality comparison
-./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
-        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
-                                         ^
-keypadScan.c(123): error: use of undeclared identifier 'PIND'
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
-                    ^
-./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
-        #define KEYPAD_PIN PIND
-                           ^
-keypadScan.c(128): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
-                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
-        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
-                                         ^
-keypadScan.c(128): note: place parentheses around the assignment to silence this warning
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
-                                    ^
-                   (                            )
-./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
-        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
-                                         ^
-keypadScan.c(128): note: use '==' to turn this assignment into an equality comparison
-./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
-        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
-                                         ^
-keypadScan.c(128): error: use of undeclared identifier 'PIND'
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
-                    ^
-./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
-        #define KEYPAD_PIN PIND
-                           ^
-8 warnings and 5 errors generated.
+lcd.c(103): warning: ISO C requires a translation unit to contain at least one declaration [-Wempty-translation-unit]
+^
+1 warning generated.
+compiling lcd.c...
 compiling keypadScan.c...
-".\Objects\CerraduraElectronica.axf" - 6 Error(s), 11 Warning(s).
+compiling main.c...
+assembling startup_stm32f10x_md.s...
+RTE/Device/STM32F103C8/system_stm32f10x.c(167): warning: no previous extern declaration for non-static variable 'AHBPrescTable' [-Wmissing-variable-declarations]
+__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+            ^
+RTE/Device/STM32F103C8/system_stm32f10x.c(167): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+    ^
+1 warning generated.
+compiling system_stm32f10x.c...
+linking...
+Program Size: Code=648 RO-data=252 RW-data=0 ZI-data=1632  
+".\Objects\CerraduraElectronica.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -190,10 +78,9 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:1.0.0
       Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\system_stm32f10x.c
       Source file:   Device\Source\ARM\startup_stm32f10x_md.s
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
-      Source file:   Device\Source\system_stm32f10x.c
-Target not created.
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

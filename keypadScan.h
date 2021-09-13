@@ -10,7 +10,7 @@
 #define KEYPADSCANLIB_H_
 //#include <inttypes.h>
 //#include <avr/io.h>
-
+#include <stm32f10x.h>
 
 /************************************************
 Librería para leer teclado matricial
@@ -35,22 +35,24 @@ Librería para leer teclado matricial
 	//#define KEYPAD_DDR DDRD
 	#define KEYPAD_PIN GPIOA->IDR
 	
-	//#define KEYPAD_PORT0 GPIOA->BSRR & (1<<8)		//PA8
+	
 	#define KEYPAD_PORT0 (1<<8)		//PA8
-	#define KEYPAD_PORT1 (1<<9)
-	#define KEYPAD_PORT2 (1<<10)
+	#define KEYPAD_PORT1 (1<<9)		//PA9
+	#define KEYPAD_PORT2 (1<<10)	// ...
 	#define KEYPAD_PORT3 (1<<11)
 	#define KEYPAD_PORT4 (1<<12)
 	#define KEYPAD_PORT5 (1<<13)
 	#define KEYPAD_PORT6 (1<<14)
 	#define KEYPAD_PORT7 (1<<15)
+	#define KEYPAD_PORT7 (1<<15)	//PA15
 //*************************
 
 
 
-void KEYPAD_Init();
+void KEYPAD_Init(void);
 
 uint8_t KEYPAD_Scan (uint8_t *pkey); //funcion para escanear con doble verificacion y memoria
 
 
-#endif /* KEYPADSCANLIB_H_ */ 
+
+#endif /* KEYPADSCANLIB_H_ */
