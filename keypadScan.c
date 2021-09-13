@@ -8,38 +8,6 @@
 #include <stm32f10x.h>
 #include <string.h>
 #include "keypadScan.h"
-
-/*CABECERAS*/
-void delay_us (uint16_t t);
-
-
-int main (void)
- { 
-   // Write your code here
-   
-    RCC->APB2ENR |= 0xFC;        /* Enable clocks for GPIO ports */
-    GPIOA->CRL = 0x44333333;    /* PA0-PA7 as outputs */
-    
-    //4 indica Entrada de Alta Impedancia.
-    //3 Indica Salida
-    //8 Indica Entrada
-
-    
-    
-   while (1){ }
- }   
-static unsigned char a;
-
-
-
-void delay_us (uint16_t t)
-{
-  volatile unsigned long l = 0;
-  uint16_t i;
-  for( i= 0; i < t; i++)
-  for(l = 0; l < 6; l++){
-  }
-}
 /*
  * KeypadScanLib.c
  *
@@ -69,7 +37,7 @@ static uint8_t getKeyPressed(uint8_t *key);
 FUNCION PARA INICIALIZAR EL TECLADO MATRICIAL
 ********************************************************/
 void KEYPAD_Init(){
-	 GPIOA->CRH = 0x44883333;    /* PA8-PA11 as Outputs && PA12-PA15 as Inputs*/
+	 GPIOA->CRH = 0x33338888;    /* PA8-PA11 as Outputs && PA12-PA15 as Inputs*/
    
 	//KEYPAD_DDR = 0xF0; //inicializo filas como salidas columnas como entradas
 	//KEYPAD_PORT = 0x0F; //activo pullup intenro
@@ -106,7 +74,7 @@ uint8_t KEYPAD_Scan (uint8_t *pkey)
 
 static uint8_t getKeyPressed(uint8_t *key)
 {
-	const uint8_t aux[4]={0x7F,0xBF,0xDF,0xEF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
+	const uint32_t aux[4]={0x00007FFF,0x0000BFFF,0x0000DFFF,0x0000EFFF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
 	uint8_t i;
 	
 	//KEYPAD_PORT|=0xF0;	//¿Que hago con el PullUp interno? 0b11110000 era de los pines de PD0 a PD3, activo pull up en los pines PA8-PA11??

@@ -26,147 +26,53 @@ Project File Date:  09/12/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Rebuild target 'Target 1'
-RTE/Device/STM32F103C8/system_stm32f10x.c(167): warning: no previous extern declaration for non-static variable 'AHBPrescTable' [-Wmissing-variable-declarations]
-__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
-            ^
-RTE/Device/STM32F103C8/system_stm32f10x.c(167): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
-    ^
-1 warning generated.
-compiling system_stm32f10x.c...
-lcd.c(94): warning: ISO C requires a translation unit to contain at least one declaration [-Wempty-translation-unit]
-^
-1 warning generated.
-compiling lcd.c...
-MEF.c(262): warning: no newline at end of file [-Wnewline-eof]
-        */
-          ^
-MEF.c(262): warning: ISO C requires a translation unit to contain at least one declaration [-Wempty-translation-unit]
-2 warnings generated.
-compiling MEF.c...
-main.c(33): warning: implicit declaration of function 'KEYPAD_Init' is invalid in C99 [-Wimplicit-function-declaration]
-    KEYPAD_Init();
-    ^
-main.c(46): warning: implicit declaration of function 'KEYPAD_Scan' is invalid in C99 [-Wimplicit-function-declaration]
-        KEYPAD_Scan(&a);
-        ^
-main.c(46): error: use of undeclared identifier 'a'
-        KEYPAD_Scan(&a);
-                     ^
-main.c(91): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-  GPIOA->ODR &= ~(1<<LCD_EN);  //LCD_EN=0
-             ~~ ^~~~~~~~~~~~
-main.c(122): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-  GPIOA->ODR &= ~ (1<<LCD_EN);                  /* EN = 0 for H-to-L pulse */
-             ~~ ^~~~~~~~~~~~~
-main.c(129): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-  GPIOA->ODR &= ~(1<<LCD_EN);           /* EN = 0 for H-to-L pulse */
-             ~~ ^~~~~~~~~~~~
-5 warnings and 1 error generated.
-compiling main.c...
-keypadScan.c(115): error: use of undeclared identifier 'PORTD'
+Build target 'Target 1'
+keypadScan.c(83): error: use of undeclared identifier 'PORTD'
                 KEYPAD_PORT&=aux[i];                            //va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA
                 ^
 ./keypadScan.h(34): note: expanded from macro 'KEYPAD_PORT'
         #define KEYPAD_PORT PORTD
                             ^
-keypadScan.c(116): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
-                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
-        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
-                                         ^
-keypadScan.c(116): note: place parentheses around the assignment to silence this warning
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
-                                    ^
-                   (                            )
-./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
-        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
-                                         ^
-keypadScan.c(116): note: use '==' to turn this assignment into an equality comparison
-./keypadScan.h(38): note: expanded from macro 'KEYPAD_PORT0'
-        #define KEYPAD_PORT0 GPIOA->BSRR = (1<<8)               //PA8
-                                         ^
-keypadScan.c(116): error: use of undeclared identifier 'PIND'
+keypadScan.c(84): error: use of undeclared identifier 'PIND'
                 if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
                     ^
 ./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
         #define KEYPAD_PIN PIND
                            ^
-keypadScan.c(121): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
-                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
-        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
-                                         ^
-keypadScan.c(121): note: place parentheses around the assignment to silence this warning
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
-                                    ^
-                   (                            )
-./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
-        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
-                                         ^
-keypadScan.c(121): note: use '==' to turn this assignment into an equality comparison
-./keypadScan.h(39): note: expanded from macro 'KEYPAD_PORT1'
-        #define KEYPAD_PORT1 GPIOA->BSRR = (1<<9)               //PA9
-                                         ^
-keypadScan.c(121): error: use of undeclared identifier 'PIND'
+keypadScan.c(89): error: use of undeclared identifier 'PIND'
                 if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
                     ^
 ./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
         #define KEYPAD_PIN PIND
                            ^
-keypadScan.c(126): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
-                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
-        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
-                                         ^
-keypadScan.c(126): note: place parentheses around the assignment to silence this warning
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
-                                    ^
-                   (                            )
-./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
-        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
-                                         ^
-keypadScan.c(126): note: use '==' to turn this assignment into an equality comparison
-./keypadScan.h(40): note: expanded from macro 'KEYPAD_PORT2'
-        #define KEYPAD_PORT2 GPIOA->BSRR = (1<<10)      // ...
-                                         ^
-keypadScan.c(126): error: use of undeclared identifier 'PIND'
+keypadScan.c(94): error: use of undeclared identifier 'PIND'
                 if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
                     ^
 ./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
         #define KEYPAD_PIN PIND
                            ^
-keypadScan.c(131): warning: using the result of an assignment as a condition without parentheses [-Wparentheses]
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
-                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
-        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
-                                         ^
-keypadScan.c(131): note: place parentheses around the assignment to silence this warning
-                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
-                                    ^
-                   (                            )
-./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
-        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
-                                         ^
-keypadScan.c(131): note: use '==' to turn this assignment into an equality comparison
-./keypadScan.h(41): note: expanded from macro 'KEYPAD_PORT3'
-        #define KEYPAD_PORT3 GPIOA->BSRR = (1<<11)
-                                         ^
-keypadScan.c(131): error: use of undeclared identifier 'PIND'
+keypadScan.c(99): error: use of undeclared identifier 'PIND'
                 if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
                     ^
 ./keypadScan.h(36): note: expanded from macro 'KEYPAD_PIN'
         #define KEYPAD_PIN PIND
                            ^
+keypadScan.c(84): warning: shift count >= width of type [-Wshift-count-overflow]
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT0){
+                                  ^ ~~~~~~~~~~~~
+keypadScan.c(89): warning: shift count >= width of type [-Wshift-count-overflow]
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT1){
+                                  ^ ~~~~~~~~~~~~
+keypadScan.c(94): warning: shift count >= width of type [-Wshift-count-overflow]
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT2){
+                                  ^ ~~~~~~~~~~~~
+keypadScan.c(99): warning: shift count >= width of type [-Wshift-count-overflow]
+                if(~KEYPAD_PIN & 1<<KEYPAD_PORT3){
+                                  ^ ~~~~~~~~~~~~
 4 warnings and 5 errors generated.
 compiling keypadScan.c...
-assembling startup_stm32f10x_md.s...
-".\Objects\CerraduraElectronica.axf" - 6 Error(s), 13 Warning(s).
+compiling main.c...
+".\Objects\CerraduraElectronica.axf" - 5 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
