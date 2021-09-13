@@ -438,6 +438,16 @@
               <FileType>5</FileType>
               <FilePath>.\utils.h</FilePath>
             </File>
+            <File>
+              <FileName>seos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\seos.h</FilePath>
+            </File>
+            <File>
+              <FileName>seos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\seos.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

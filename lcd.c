@@ -80,26 +80,37 @@ void LCDputValue(unsigned char value)
    LCD_PIN_OUT |= (1<<LCD_EN);        	 		/* EN = 1 for H-to-L pulse */
    delay_us(1);                       					/* make EN pulse wider. You can use delay_us(2); too */
    LCD_PIN_OUT &= ~ (1<<LCD_EN);       		/* EN = 0 for H-to-L pulse */
-   delay_us(100);                       				/* wait */
+   delay_us(1600);                       				/* wait */
 
    LCD_PORT_BRR = 0x0F;                 			/* clear PA0-PA3 */
    LCD_PORT_BSRR = value&0x0F;          	 	/* put low nibble on PA0-PA3 */
    LCD_PIN_OUT |= (1<<LCD_EN);         			/* EN = 1 for H-to-L pulse */
    delay_us(1);                       					/* make EN pulse wider */
    LCD_PIN_OUT &= ~(1<<LCD_EN);         		/* EN = 0 for H-to-L pulse */
-   delay_us(100);                       				/* wait */
+   delay_us(1600);                       				/* wait */
 }
 
 //Cursor to X Y position
-void LCDGotoXY(uint8_t, uint8_t){
-	
+void LCDGotoXY(uint8_t x, uint8_t y){
+	register uint8_t DDRAMAddr;
+	// remap lines into proper order
+	switch(y)
+	{
+	case 0: DDRAMAddr = LCD_LINE0_DDRAMADDR+x; break;
+	case 1: DDRAMAddr = LCD_LINE1_DDRAMADDR+x; break;
+	case 2: DDRAMAddr = LCD_LINE2_DDRAMADDR+x; break;
+	case 3: DDRAMAddr = LCD_LINE3_DDRAMADDR+x; break;
+	default: DDRAMAddr = LCD_LINE0_DDRAMADDR+x;
+	}
+	// set data address
+	LCDsendCommand(1<<LCD_DDRAM | DDRAMAddr);
 }
 //Clears LCD
 void LCDclr(void){
-	
+	LCDsendCommand(1<<LCD_CLR);	
 }
 //Cursor OFF
 void LCDcursorOFF(void){
-	
+	LCDsendCommand(0x0C);	
 }
 

@@ -4,6 +4,9 @@
 #include <stm32f10x.h>
 #include "keypadScan.h"	//pal delay_us por ahora
 
+
+#define LCD_CLR 0	//DB0: clear display
+
 //PARA CAMBIAR EL PUERTO CAMBIAR GPIOx DONDE x CORRESPONDE AL PUERTO
 #define LCD_PORT 		GPIOA->CRL
 #define LCD_PIN_IN 		GPIOA->IDR			//Input Data Register
@@ -13,10 +16,18 @@
 //you can use both if you don't want to do the bit shift left operation
 #define LCD_PORT_BSRR	GPIOA->BSRR
 #define LCD_PORT_BRR	GPIOA->BRR 
-	
+
 #define LCD_RS 4
 #define LCD_RW 6
 #define LCD_EN 5
+
+// cursor position to DDRAM mapping
+#define LCD_LINE0_DDRAMADDR 0x00
+#define LCD_LINE1_DDRAMADDR 0x40
+#define LCD_LINE2_DDRAMADDR 0x14
+#define LCD_LINE3_DDRAMADDR 0x54
+#define LCD_DDRAM 7	//DB7: set DD RAM address -> 1<<LCD_DDRAM => 0x80
+
 
 /*CABECERAS*/
 uint8_t string_len(char* data);
