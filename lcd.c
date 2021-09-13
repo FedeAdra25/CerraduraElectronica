@@ -4,7 +4,7 @@
  * Processor: STM32F103C6
  * Compiler:  Keil for ARM
  */
-/*
+
 #include <stm32f10x.h>
 #include <string.h>
 #include "lcd.h"
@@ -89,7 +89,7 @@ void lcd_putValue(unsigned char value)
   GPIOA->BSRR = (value>>4)&0x0F;     		// put high nibble on PA0-PA3 
   GPIOA->ODR |= (1<<LCD_EN);        	 	// EN = 1 for H-to-L pulse 
   delay_us(1);                       				// make EN pulse wider. You can use delay_us(2); too 
-  GPIOA->ODR &= ~ (1<<LCD_EN);       		// EN = 0 for H-to-L pulse 
+  GPIOA->ODR &= ~(1<<LCD_EN);       		// EN = 0 for H-to-L pulse 
   delay_us(100);                       			// wait 
 
   GPIOA->BRR = 0x0F;                 			// clear PA0-PA3 
@@ -99,5 +99,5 @@ void lcd_putValue(unsigned char value)
   GPIOA->ODR &= ~(1<<LCD_EN);         	// EN = 0 for H-to-L pulse 
   delay_us(100);                       			// wait 
 }
-*/
+
 
