@@ -5,15 +5,13 @@
  * Compiler:  Keil for ARM
  */
 
+
+
+
 #include <stm32f1xx.h>
 #include <string.h>
 #include <keypadScan.h>
 
-/*CABECERAS*/
-
-
-//MEMO --> CAMBIAR ESTE DELAY A OTRO ARCHIVO 
-//(ALGUN DELAY.C O EL MAIN)
 void delay_us (uint16_t t)
 {
   volatile unsigned long l = 0;
@@ -22,16 +20,6 @@ void delay_us (uint16_t t)
   for(l = 0; l < 6; l++){
   }
 }
-/*
- * KeypadScanLib.c
- *
- * Created: 19-Apr-21 4:50:53 PM
- *  Author: fedea
- */
-
-
-
-
 
 //Definicion de variable global privada
 static const uint8_t teclas[4][4]= {
@@ -41,21 +29,20 @@ static const uint8_t teclas[4][4]= {
 	{'*','0','#','D'},
 };
 
-
-
 //Prototipo para funcion privada 
 static uint8_t getKeyPressed(uint8_t *key);
+
+
 
 
 /*******************************************************
 FUNCION PARA INICIALIZAR EL TECLADO MATRICIAL
 ********************************************************/
 void KEYPAD_Init(){
-	 GPIOA->CRH = 0x33338888;    /* PA8-PA11 as Outputs (FILAS) && PA12-PA15 as Inputs (COLUMNAS)*/
-   
-	//KEYPAD_DDR = 0xF0; //inicializo "filas como salidas", columnas como entradas
-	//KEYPAD_PORT = 0x0F; //activo pullup intenro
+	 KEYPAD_PORT = 0x33338888;    /* PA8-PA11 as Outputs (FILAS) && PA12-PA15 as Inputs (COLUMNAS)*/
 }
+
+
 
 /********************************************************
 FUNCION PARA ESCANEAR UN TECLADO MATRICIAL Y DEVOLVER LA
@@ -68,9 +55,9 @@ DEVUELVE:
 uint8_t KEYPAD_Scan (uint8_t *pkey)
 {
 	static uint8_t Old_key;
-	static uint8_t Key, Last_valid_key=0xFF; // no hay tecla presionada
-	if(!getKeyPressed(&Key)) { //getKeyPressed hace barrido del teclado
-		Old_key=0xFF; // no hay tecla presionada
+	static uint8_t Key, Last_valid_key=0xFF; 	// no hay tecla presionada
+	if(!getKeyPressed(&Key)) { 				//getKeyPressed hace barrido del teclado
+		Old_key=0xFF; 					// no hay tecla presionada
 		Last_valid_key=0xFF;
 		return 0;
 	}
@@ -85,44 +72,41 @@ uint8_t KEYPAD_Scan (uint8_t *pkey)
 	return 0;
 }
 
-//BARRIDO
+/********************************************************
+///////////////////BARRIDO DE TECLADO////////////////
+********************************************************/
 static uint8_t getKeyPressed(uint8_t *key)
 {
 	const uint16_t aux[4]={0x7FFF,0xBFFF,0xDFFF,0xEFFF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
 	uint8_t i;
-	uint32_t temp =  GPIOA->ODR;
 	
-	//KEYPAD_PORT|=0xF0;	//Â¿Que hago con el PullUp interno? 0b11110000 era de los pines de PD0 a PD3, activo pull up en los pines PA8-PA11??
-	GPIOA->CRH = 0x33338888;	//verificar.
+	uint32_t temp =  KEYPAD_PIN_OUT;		//Guardo el estado anterior del PIN_OUT
+	KEYPAD_PORT = 0x33338888;			/* PA8-PA11 as Outputs (FILAS) && PA12-PA15 as Inputs (COLUMNAS)*/
 	
-	
-
+	//Barrido
 	for(i=0;i<4;i++){
-		GPIOA->ODR = aux[i]; 				//va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA	0111 1111
+		KEYPAD_PIN_OUT = aux[i]; 				//va poniendo un cero en cada fila para poder leerla
 	       
-		if(~KEYPAD_PIN & KEYPAD_PORT0){		//KEYPAD_PIN es GPIOA->IDR	1er iteracion ~0111 1111 1111 1111 & 1000 0000 0000 0000
-			//1 en Pin D0
+		if(~KEYPAD_PIN_IN & KEYPAD_PORT0){		//Leo la entrada correspondiente del Keypad y hago un AND bit a bit con el PIN que me interesa del puerto.
+			//Si entra al IF, Existe un 1 logico en el PIN deseado
 			*key=teclas[i][0];
 			return 1;
 		}
-		if(~KEYPAD_PIN & KEYPAD_PORT1){
-			//1 en Pin D1
+		if(~KEYPAD_PIN_IN & KEYPAD_PORT1){
 			*key=teclas[i][1];
 			return 1;
 		}
-		if(~KEYPAD_PIN & KEYPAD_PORT2){
-			//1 en Pin D2
+		if(~KEYPAD_PIN_IN & KEYPAD_PORT2){
 			*key=teclas[i][2];
 			return 1;
 		}
-		if(~KEYPAD_PIN & KEYPAD_PORT3){
-			//1 en Pin D3
+		if(~KEYPAD_PIN_IN & KEYPAD_PORT3){
 			*key=teclas[i][3];
 			return 1;
 		}
 	}
 	
-	GPIOA->ODR = temp;
+	KEYPAD_PIN_OUT = temp;
 	return 0;
 }
  

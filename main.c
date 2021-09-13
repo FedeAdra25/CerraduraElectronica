@@ -14,7 +14,7 @@ uint8_t a ;
 
 int main (void)
  { 
-        //4 indica Entrada de Alta Impedancia.
+    //4 indica Entrada de Alta Impedancia.
     //3 Indica Salida
     //8 Indica Entrada
     
