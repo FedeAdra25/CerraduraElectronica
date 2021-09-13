@@ -77,9 +77,12 @@ static uint8_t getKeyPressed(uint8_t *key)
 {
 	const uint32_t aux[4]={0x00007FFF,0x0000BFFF,0x0000DFFF,0x0000EFFF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
 	uint8_t i;
+	uint32_t temp =  GPIOA->ODR;
 	
 	//KEYPAD_PORT|=0xF0;	//¿Que hago con el PullUp interno? 0b11110000 era de los pines de PD0 a PD3, activo pull up en los pines PA8-PA11??
-	GPIOA->CRH = 0x88883333;	//verificar.
+	GPIOA->CRH = 0x33338888;	//verificar.
+	
+	
 
 	for(i=0;i<4;i++){
 		GPIOA->ODR = aux[i]; 				//va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA	0111 1111
@@ -104,6 +107,8 @@ static uint8_t getKeyPressed(uint8_t *key)
 			return 1;
 		}
 	}
+	
+	GPIOA->ODR = temp;
 	return 0;
 }
  
