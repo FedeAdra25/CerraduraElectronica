@@ -12,7 +12,8 @@
 /*CABECERAS*/
 
 
-
+//MEMO --> CAMBIAR ESTE DELAY A OTRO ARCHIVO 
+//(ALGUN DELAY.C O EL MAIN)
 void delay_us (uint16_t t)
 {
   volatile unsigned long l = 0;
