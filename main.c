@@ -6,31 +6,30 @@
  */
 
 #include <stm32f10x.h>
-
-#include "keypadScan.h"
+#include "main.h"
 #include "lcd.h"
+#include "keypadScan.h"
+#include "MEF.h"
+#include "seos.h"
+#include "timer.h"
 
-
-
-int main (void)
- { 
-	 uint8_t a;
-    //4 indica Entrada de Alta Impedancia.
-    //3 Indica Salida
-    //8 Indica Entrada
-    
-   // CODIGO DE PRUEBA KEYPAD + LCD
-   
-    RCC->APB2ENR |= 0xFC;        /* Enable clocks for GPIO ports */
-    
-    //Inicializo los perifericos
-    KEYPAD_Init();
-    LCDinit();
-    
-    LCDstring("TESTEANDO HOLA",11);
-    
-   while (1){ 
-		 KEYPAD_Scan(&a);	//en la variable 'a' se guarda la tecla leida por teclado
-		 delay_us(300);
-	 }
- }
+int main(void)
+{
+	//Inicializar periféricos	
+	KEYPAD_Init();
+	LCDinit();	
+	//Inicializar MEF	
+	MEF_Init(10);	
+	//Inicializar Timer (para el reloj)
+	TIMER_Init((uint8_t)14,(uint8_t)00,(uint8_t)00);	
+	//Configurar Arq time-triggered
+	//La libreria interrumpe cada xxms
+	SEOS_Init();	
+	//Habilitar interrupciones
+	//sei();
+    while (1) 
+    {	
+		//realizar  tareas
+		SEOS_Dispatch_Tasks();		
+    }
+}
