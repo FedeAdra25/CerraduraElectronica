@@ -4,7 +4,7 @@
  * Processor: STM32F103C6
  * Compiler:  Keil for ARM
  */
-
+/*
 #include <stm32f10x.h>
 #include <string.h>
 #include "lcd.h"
@@ -64,29 +64,31 @@ void lcd_init(){
 
 void lcd_sendCommand (uint8_t cmd)
 {
-   GPIOA->BRR = (1<<LCD_RS); /* RS = 0 for command */	
+   GPIOA->BRR = (1<<LCD_RS); // RS = 0 for command 
    lcd_putValue(cmd);
 }
 
 void lcd_sendData (uint8_t data)
 {
-   GPIOA->BSRR = (1<<LCD_RS); /* RS = 1 for data */
+   GPIOA->BSRR = (1<<LCD_RS); // RS = 1 for data
    lcd_putValue(data);
 }
 
 void lcd_putValue(unsigned char value)
 {
-  GPIOA->BRR = 0x0F;                 			/* clear PA0-PA3 */
-  GPIOA->BSRR = (value>>4)&0x0F;     		/* put high nibble on PA0-PA3 */
-  GPIOA->ODR |= (1<<LCD_EN);        	 	/* EN = 1 for H-to-L pulse */
-  delay_us(1);                       				/* make EN pulse wider. You can use delay_us(2); too */
-  GPIOA->ODR &= ~ (1<<LCD_EN);       		/* EN = 0 for H-to-L pulse */
-  delay_us(100);                       			/* wait */
+  GPIOA->BRR = 0x0F;                 			// clear PA0-PA3 
+  GPIOA->BSRR = (value>>4)&0x0F;     		// put high nibble on PA0-PA3 
+  GPIOA->ODR |= (1<<LCD_EN);        	 	// EN = 1 for H-to-L pulse 
+  delay_us(1);                       				// make EN pulse wider. You can use delay_us(2); too 
+  GPIOA->ODR &= ~ (1<<LCD_EN);       		// EN = 0 for H-to-L pulse 
+  delay_us(100);                       			// wait 
 
-  GPIOA->BRR = 0x0F;                 			/* clear PA0-PA3 */
-  GPIOA->BSRR = value&0x0F;          	 	/* put low nibble on PA0-PA3 */
-  GPIOA->ODR |= (1<<LCD_EN);         		/* EN = 1 for H-to-L pulse */
-  delay_us(1);                       				/* make EN pulse wider */
-  GPIOA->ODR &= ~(1<<LCD_EN);         	/* EN = 0 for H-to-L pulse */
-  delay_us(100);                       			/* wait */
+  GPIOA->BRR = 0x0F;                 			// clear PA0-PA3 
+  GPIOA->BSRR = value&0x0F;          	 	// put low nibble on PA0-PA3 
+  GPIOA->ODR |= (1<<LCD_EN);         		// EN = 1 for H-to-L pulse 
+  delay_us(1);                       				// make EN pulse wider 
+  GPIOA->ODR &= ~(1<<LCD_EN);         	// EN = 0 for H-to-L pulse 
+  delay_us(100);                       			// wait 
 }
+*/
+

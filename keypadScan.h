@@ -10,7 +10,7 @@
 #define KEYPADSCANLIB_H_
 //#include <inttypes.h>
 //#include <avr/io.h>
-
+#include <stm32f10x.h>
 
 /************************************************
 Librería para leer teclado matricial
@@ -47,10 +47,9 @@ Librería para leer teclado matricial
 
 
 
-void KEYPAD_Init();
+void KEYPAD_Init(void);
 
 uint8_t KEYPAD_Scan (uint8_t *pkey); //funcion para escanear con doble verificacion y memoria
 
 
 #endif /* KEYPADSCANLIB_H_ */
- 

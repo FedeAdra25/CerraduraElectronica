@@ -28,6 +28,9 @@ int main (void)
     
    while (1){ }
  }   
+static unsigned char a;
+
+
 
 void delay_us (uint16_t t)
 {
