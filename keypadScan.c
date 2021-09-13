@@ -33,7 +33,7 @@ int main (void)
    while (1){ 
 	 
 	KEYPAD_Scan(&a);
-	 delay_us(3000);
+	 delay_us(300);
       }
  }   
 
@@ -74,7 +74,7 @@ static uint8_t getKeyPressed(uint8_t *key);
 FUNCION PARA INICIALIZAR EL TECLADO MATRICIAL
 ********************************************************/
 void KEYPAD_Init(){
-	 GPIOA->CRH = 0x88883333;    /* PA8-PA11 as Outputs (FILAS) && PA12-PA15 as Inputs (COLUMNAS)*/
+	 GPIOA->CRH = 0x33338888;    /* PA8-PA11 as Outputs (FILAS) && PA12-PA15 as Inputs (COLUMNAS)*/
    
 	//KEYPAD_DDR = 0xF0; //inicializo "filas como salidas", columnas como entradas
 	//KEYPAD_PORT = 0x0F; //activo pullup intenro
@@ -113,13 +113,17 @@ static uint8_t getKeyPressed(uint8_t *key)
 {
 	const uint16_t aux[4]={0x7FFF,0xBFFF,0xDFFF,0xEFFF}; //{F1,F2,F3,F4} -> aux[i] implica 0 en Fila i
 	uint8_t i;
+	uint32_t temp =  GPIOA->ODR;
 	
 	//KEYPAD_PORT|=0xF0;	//¿Que hago con el PullUp interno? 0b11110000 era de los pines de PD0 a PD3, activo pull up en los pines PA8-PA11??
-	GPIOA->CRH = 0x88883333;	//verificar.
+	GPIOA->CRH = 0x33338888;	//verificar.
+	
+	
 
 	for(i=0;i<4;i++){
 		GPIOA->ODR = aux[i]; 				//va poniendo un cero en cada fila => LEE COMENTARIO ARRIBA	0111 1111
-		if(~KEYPAD_PIN & KEYPAD_PORT0){		//KEYPAD_PIN es GPIOA->IDR	1er iteracion 0111 1111 1111 1111 & 1000 0000 0000 0000
+	       
+		if(~KEYPAD_PIN & KEYPAD_PORT0){		//KEYPAD_PIN es GPIOA->IDR	1er iteracion ~0111 1111 1111 1111 & 1000 0000 0000 0000
 			//1 en Pin D0
 			*key=teclas[i][0];
 			return 1;
@@ -140,6 +144,8 @@ static uint8_t getKeyPressed(uint8_t *key)
 			return 1;
 		}
 	}
+	
+	GPIOA->ODR = temp;
 	return 0;
 }
  
