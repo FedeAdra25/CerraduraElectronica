@@ -26,7 +26,74 @@ Project File Date:  09/13/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling utils.c...
+assembling startup_stm32f10x_md.s...
+seos.c(8): warning: In file included from...
+./seos.h(12): warning: this function declaration is not a prototype [-Wstrict-prototypes]
+void SEOS_Init();
+              ^
+               void
+./seos.h(13): warning: this function declaration is not a prototype [-Wstrict-prototypes]
+void SEOS_Dispatch_Tasks();
+                        ^
+                         void
+./seos.h(17): warning: no newline at end of file [-Wnewline-eof]
+#endif /* SEOS_H_ */
+                    ^
+seos.c(12): warning: no previous extern declaration for non-static variable 'Flag_MEF' [-Wmissing-variable-declarations]
+volatile unsigned char Flag_MEF=0;
+                       ^
+seos.c(12): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+volatile unsigned char Flag_MEF=0;
+         ^
+seos.c(16): warning: no previous prototype for function 'SEOS_Init' [-Wmissing-prototypes]
+void SEOS_Init(){
+     ^
+./seos.h(12): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+void SEOS_Init();
+     ^
+               void
+seos.c(16): warning: this old-style function definition is not preceded by a prototype [-Wstrict-prototypes]
+void SEOS_Init(){
+              ^
+seos.c(21): warning: no previous prototype for function 'SEOS_Dispatch_Tasks' [-Wmissing-prototypes]
+void SEOS_Dispatch_Tasks(){
+     ^
+./seos.h(13): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+void SEOS_Dispatch_Tasks();
+     ^
+                         void
+seos.c(21): warning: this old-style function definition is not preceded by a prototype [-Wstrict-prototypes]
+void SEOS_Dispatch_Tasks(){
+                        ^
+seos.c(33): warning: parameter 'TIMER0_COMPA_vect' was not declared, defaulting to type 'int' [-Wpedantic]
+ISR(TIMER0_COMPA_vect){ //interrupci<F3>n cada 4ms
+    ^
+seos.c(33): warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+ISR(TIMER0_COMPA_vect){ //interrupci<F3>n cada 4ms
+^
+seos.c(38): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+seos.c(33): warning: unused parameter 'TIMER0_COMPA_vect' [-Wunused-parameter]
+ISR(TIMER0_COMPA_vect){ //interrupci<F3>n cada 4ms
+    ^
+seos.c(33): warning: no previous prototype for function 'ISR' [-Wmissing-prototypes]
+ISR(TIMER0_COMPA_vect){ //interrupci<F3>n cada 4ms
+^
+seos.c(33): note: declare 'static' if the function is not intended to be used outside of this translation unit
+ISR(TIMER0_COMPA_vect){ //interrupci<F3>n cada 4ms
+   ^
+   static 
+seos.c(33): warning: this old-style function definition is not preceded by a prototype [-Wstrict-prototypes]
+ISR(TIMER0_COMPA_vect){ //interrupci<F3>n cada 4ms
+   ^
+seos.c(38): warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+15 warnings generated.
+compiling seos.c...
 main.c(9): warning: In file included from...
 ./main.h(25): warning: no newline at end of file [-Wnewline-eof]
 /* End of file */
@@ -45,9 +112,57 @@ void SEOS_Dispatch_Tasks();
                     ^
 4 warnings generated.
 compiling main.c...
+compiling keypadScan.c...
+RTE/Device/STM32F103C8/system_stm32f10x.c(167): warning: no previous extern declaration for non-static variable 'AHBPrescTable' [-Wmissing-variable-declarations]
+__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+            ^
+RTE/Device/STM32F103C8/system_stm32f10x.c(167): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+    ^
+1 warning generated.
+compiling system_stm32f10x.c...
+lcd.c(45): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+  LCD_PIN_OUT &= ~(1<<LCD_EN);          //LCD_EN=0
+              ~~ ^~~~~~~~~~~~
+lcd.c(82): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+   LCD_PIN_OUT &= ~ (1<<LCD_EN);                /* EN = 0 for H-to-L pulse */
+               ~~ ^~~~~~~~~~~~~
+lcd.c(89): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+   LCD_PIN_OUT &= ~(1<<LCD_EN);                         /* EN = 0 for H-to-L pulse */
+               ~~ ^~~~~~~~~~~~
+3 warnings generated.
+compiling lcd.c...
+timer.c(54): warning: result of comparison of unsigned expression >= 0 is always true [-Wtautological-unsigned-zero-compare]
+        if(h<24 && h>=0){
+                   ~^ ~
+timer.c(60): warning: result of comparison of unsigned expression >= 0 is always true [-Wtautological-unsigned-zero-compare]
+        if(m<60 && m>=0){
+                   ~^ ~
+timer.c(66): warning: result of comparison of unsigned expression >= 0 is always true [-Wtautological-unsigned-zero-compare]
+        if(s<60 && s>=0){
+                   ~^ ~
+timer.c(69): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+4 warnings generated.
+compiling timer.c...
+MEF.c(263): warning: no newline at end of file [-Wnewline-eof]
+        
+        ^
+MEF.c(17): warning: unused variable 'lengthClaveAct' [-Wunused-const-variable]
+static const uint8_t lengthClaveAct=4;
+                     ^
+MEF.c(29): warning: unused variable 'ingresoDig' [-Wunused-variable]
+static uint8_t ingresoDig;
+               ^
+MEF.c(50): warning: unused function 'OutMClave' [-Wunused-function]
+static void OutMClave(void);
+            ^
+4 warnings generated.
+compiling MEF.c...
 linking...
 Program Size: Code=2934 RO-data=286 RW-data=4 ZI-data=1656  
-".\Objects\CerraduraElectronica.axf" - 0 Error(s), 4 Warning(s).
+".\Objects\CerraduraElectronica.axf" - 0 Error(s), 31 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -74,11 +189,11 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
-      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
-Build Time Elapsed:  00:00:01
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
