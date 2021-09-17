@@ -51,9 +51,9 @@ ODR corresponde al Output Data Register
 ********************************************************************/
 
       //PARA CAMBIAR EL PUERTO CAMBIAR GPIOx DONDE x CORRESPONDE AL PUERTO
-	#define KEYPAD_PORT 		GPIOB->CRH
-	#define KEYPAD_PIN_IN 	GPIOB->IDR			//Input Data Register
-	#define KEYPAD_PIN_OUT 	GPIOB->ODR		//Output Data Register
+	#define KEYPAD_PORT GPIOB->CRH
+	#define KEYPAD_PIN_IN GPIOB->IDR			//Input Data Register
+	#define KEYPAD_PIN_OUT GPIOB->ODR		//Output Data Register
 	
 	#define KEYPAD_PORT0 (1<<8)	
 	#define KEYPAD_PORT1 (1<<9)
