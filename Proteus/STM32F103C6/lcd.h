@@ -2,7 +2,7 @@
 #define LCD_H
 
 #include <stm32f103x6.h>
-#include "keypadScan.h"	//pal delay_us por ahora
+#include <utils.h>
 
 
 #define LCD_CLR 0	//DB0: clear display
@@ -18,8 +18,8 @@
 #define LCD_PORT_BRR	GPIOA->BRR 
 
 #define LCD_RS 4
-#define LCD_RW 5
-#define LCD_EN 6
+#define LCD_RW 6
+#define LCD_EN 5
 
 // cursor position to DDRAM mapping
 #define LCD_LINE0_DDRAMADDR 0x00
