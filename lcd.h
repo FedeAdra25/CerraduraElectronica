@@ -1,7 +1,7 @@
 #ifndef LCD_H
 #define LCD_H
 
-#include <stm32f10x.h>
+#include <stm32f1xx.h>
 #include "keypadScan.h"	//pal delay_us por ahora
 
 

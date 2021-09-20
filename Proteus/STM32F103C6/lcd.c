@@ -8,18 +8,6 @@
 #include "lcd.h"
 #include "utils.h" //Delay timer
 
-/*
-//Cabecera de string_len, que igualmente no se utiliza
-uint8_t string_len(char* data);
-
-uint8_t string_len(char* data){
-    
-   uint8_t ret=0;
-    for(;*data!='\0'||data;data++)
-        ret++;
-    return ret;
- }
- */
  //Cabecera de función privada
  void LCDputValue(uint8_t value);
 

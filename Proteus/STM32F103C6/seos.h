@@ -10,7 +10,7 @@
 
 #include <stm32f103x6.h>
 
-void SEOS_Init();
-void SEOS_Dispatch_Tasks();
+void SEOS_Init(void);
+void SEOS_Dispatch_Tasks(void);
 
 #endif /* SEOS_H_ */

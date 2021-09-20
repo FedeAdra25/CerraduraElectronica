@@ -13,7 +13,7 @@
 #include <stdlib.h>
 
 // Constantes
-static const uint8_t lengthClaveAct=4;
+//static const uint8_t lengthClaveAct=4;
 
 //Variables globales privadas
 static  uint8_t state_time = 0;
@@ -25,7 +25,7 @@ static uint8_t posClaveIng= 0;
 static uint32_t ticksPerSecond; //Se inicializa en el init
 static uint8_t actHora = 0; 
 static unsigned char* hora;
-static uint8_t ingresoDig;
+//static uint8_t ingresoDig;
 static uint8_t teclaPresionada=0;
 
 
@@ -46,7 +46,7 @@ static void Out_IngClave(void);
 static void OutClaveInc(void);
 static void OutAbierto(void);
 static void OutIdle(void);
-static void OutMClave(void);
+//static void OutMClave(void);
 
 
 void MEF_Init(uint32_t tps){
@@ -257,6 +257,4 @@ void MEF_Update (void)
 	{
 		if(state_time < ticksPerSecond/2) return 0; //0.5 segundos mostrando ABIERTO
 		else return 1;
-	}
-	
-	
+}

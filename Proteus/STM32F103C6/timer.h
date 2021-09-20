@@ -9,7 +9,7 @@ void TIMER_Update(void);
 
 //Funcion para conseguir la hora
 //En formato hh:mm:ss
-unsigned char* TIMER_GetHora();
+unsigned char* TIMER_GetHora(void);
 
 //Funciones para modificar hora minutos o segundos
 //En caso de ingresar valores inválidos no se realizará ningún cambio
