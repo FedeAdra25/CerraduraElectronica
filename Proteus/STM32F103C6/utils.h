@@ -3,7 +3,7 @@
 #include <stm32f103x6.h>
 #include "main.h"
 #ifndef F_CPU
-#define F_CPU 72000000UL
+#define F_CPU 72000000
 #endif
 
 #define CONST_FOR_US_DELAY 12
