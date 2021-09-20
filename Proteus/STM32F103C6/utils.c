@@ -3,11 +3,12 @@
 
 
 static unsigned long ms_delay_const = CONST_FOR_MS_DELAY * (72000000UL / F_CPU); 
+static unsigned long us_delay_const = CONST_FOR_US_DELAY * (72000000UL / F_CPU); 
 
 void delay_us(unsigned long amount){
 	unsigned long i,l;
 	for(i=0;i<amount;i++)
-		for(l=0;l<CONST_FOR_US_DELAY;l++);
+		for(l=0;l<us_delay_const;l++);
 }
 
 void delay_ms(unsigned long amount){
