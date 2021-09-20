@@ -31,14 +31,14 @@ void LCDinit(){
   LCD_PORT = 0x33333333;    		/* PA0-PA7 as outputs */
   LCD_PIN_OUT &= ~(1<<LCD_EN);  	//LCD_EN=0
 
-  delay_us(3000);              			//Delay de 3ms
+  delay_ms(3);              			//Delay de 3ms
   LCDsendCommand(0x33);          		//Send $33 for init
   LCDsendCommand(0x32);          		//Send $32 for init
   LCDsendCommand(0x28);          		//Init LCD 2 line, 5x7 Matrix
   LCDsendCommand(0x0e);          		//Display On, Curson On
   LCDsendCommand(0x01);          		//Clear LCD
 
-  delay_us(2000);              			//Delay de 2ms
+  delay_ms(2);              			//Delay de 2ms
   LCDsendCommand(0x06);          		//Shift Cursor Right
 }
 
@@ -67,14 +67,14 @@ void LCDputValue(unsigned char value)
    LCD_PIN_OUT |= (1<<LCD_EN);        	 		/* EN = 1 for H-to-L pulse */
    delay_us(1);                       					/* make EN pulse wider. You can use delay_us(2); too */
    LCD_PIN_OUT &= ~ (1<<LCD_EN);       		/* EN = 0 for H-to-L pulse */
-   delay_us(1600);                       				/* wait */
+   delay_ms(2);                       				/* wait */
 
    LCD_PORT_BRR = 0x0F;                 			/* clear PA0-PA3 */
    LCD_PORT_BSRR = value&0x0F;          	 	/* put low nibble on PA0-PA3 */
    LCD_PIN_OUT |= (1<<LCD_EN);         			/* EN = 1 for H-to-L pulse */
    delay_us(1);                       					/* make EN pulse wider */
    LCD_PIN_OUT &= ~(1<<LCD_EN);         		/* EN = 0 for H-to-L pulse */
-   delay_us(1600);                       				/* wait */
+   delay_ms(2);                       				/* wait */
 }
 
 //Cursor to X Y position

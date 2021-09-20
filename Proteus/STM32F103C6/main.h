@@ -10,7 +10,7 @@
 #define MAIN_H_
 
 //DEFINO FRECUENCIA DEL CLOCK DEL MCU (en Hz)
-#define F_CPU 72000000UL //72Mhz
+#define F_CPU 72000000 //72Mhz
 //delays segun frecuencia del clock
 #include "utils.h"
 
