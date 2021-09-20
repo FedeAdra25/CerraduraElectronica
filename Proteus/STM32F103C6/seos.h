@@ -11,7 +11,6 @@
 
 void SEOS_Init();
 void SEOS_Dispatch_Tasks();
-void testing_timer(void);
 
 
 #endif /* SEOS_H_ */

@@ -218,7 +218,7 @@ void MEF_Update (void)
 	
 	static uint8_t Clave_IncTime(void)
 	{
-		if(state_time < 2*ticksPerSecond) return 0;
+		if(state_time < ticksPerSecond/5) return 0; //0.2 segundos mostrando DENEGADO
 		else return 1;
 	}
 	
@@ -255,7 +255,7 @@ void MEF_Update (void)
 	
 	static uint8_t AbiertoTime(void)
 	{
-		if(state_time < 3*ticksPerSecond) return 0;
+		if(state_time < ticksPerSecond/2) return 0; //0.5 segundos mostrando ABIERTO
 		else return 1;
 	}
 	

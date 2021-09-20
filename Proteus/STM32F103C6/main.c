@@ -33,7 +33,7 @@ int main(void)
     {
        //realizar  tareas
        SEOS_Dispatch_Tasks();
-       testing_timer();
-       delay_ms(4);
+       //testing_timer();
+       //delay_ms(4);
     }
 }

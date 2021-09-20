@@ -38,13 +38,13 @@ void TIMER_Update(){
 
 unsigned char* TIMER_GetHora(){
 	hora[7] = '0' + (uint8_t)seconds % 10;
-	hora[6] = '0' +(seconds/10);
+	hora[6] = '0' +((uint8_t)seconds/10);
 	hora[5] = ':';
 	hora[4] = '0' + (uint8_t)minutes % 10;
-	hora[3] = '0' +(minutes/10);;
+	hora[3] = '0' +((uint8_t)minutes/10);;
 	hora[2] = ':';
 	hora[1] = '0' + (uint8_t)hours %10;
-	hora[0] = '0' +(hours/10);
+	hora[0] = '0' +((uint8_t)hours/10);
 	return hora;
 }
 
