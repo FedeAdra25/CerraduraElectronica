@@ -1,0 +1,50 @@
+
+#include "utils.h"
+#ifndef F_CPU
+#define F_CPU 72000000UL
+#endif
+
+#define CONST_FOR_US_DELAY 12
+#define CONST_FOR_MS_DELAY 11998
+
+static unsigned long ms_delay_const = CONST_FOR_MS_DELAY * (72000000UL / F_CPU); 
+static unsigned long am ;
+
+
+void delay_ms(unsigned long amount){
+	//configuro Timer0 para interrupciones cada 100 ms
+	//Cuenta: LOAD = (delay * clk) -1 --> clk is not predivided by 8, bit D2=1 in ctrl
+	am =  F_CPU/1000 * amount  -  1 ;
+	SysTick->LOAD = am;
+	SysTick->CTRL = 0x5;
+
+	while((SysTick->CTRL & (1<<16)) == 0);
+
+	SysTick->CTRL = 0x00;
+}
+
+void delay_us(unsigned long amount){
+	//configuro Timer0 para interrupciones cada 100 ms
+	am = F_CPU/1000000;
+	am = am * amount;
+	am = am-1;
+	SysTick->LOAD = am;
+	SysTick->CTRL = 0x5;
+
+	while((SysTick->CTRL & (1<<16)) == 0);
+
+	SysTick->CTRL = 0x00;
+}
+
+
+void delaySW_us(unsigned long amount){
+	unsigned long i,l;
+	for(i=0;i<amount;i++)
+		for(l=0;l<CONST_FOR_US_DELAY;l++);
+}
+
+void delaySW_ms(unsigned long amount){
+	unsigned long i,l;
+	for(i=0;i<amount;i++)
+		for(l=0;l<ms_delay_const;l++);
+}

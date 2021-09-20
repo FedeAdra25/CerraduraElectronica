@@ -8,15 +8,14 @@
 #include "seos.h"
 #include "timer.h"
 #include "MEF.h"
-#include <stm32f103x6.h>
+
 
 volatile unsigned char Flag_MEF=0;
-static unsigned char iCont=0;
 static unsigned char iClock=0;
 
 void SEOS_Init(){
-	//configuro Timer0 para interrupciones cada 4 ms
-	SysTick->LOAD = (uint32_t)63999;
+	//configuro SysTick para interrupciones cada 100 ms
+	SysTick->LOAD = (uint32_t)7199999;
 	SysTick->CTRL = 0x3;
 }
 
@@ -32,10 +31,7 @@ void SEOS_Dispatch_Tasks(){
 	}	
 }
 
-void SysTick_Handler() //Esto corre cada 4ms
+void SysTick_Handler() //Esto corre cada 100ms
 {
-	if(++iCont==25){
-		Flag_MEF=1;
-		iCont=0;
-	}
+	Flag_MEF=1;
 }

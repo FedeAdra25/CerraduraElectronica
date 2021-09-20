@@ -23,7 +23,7 @@ int main(void)
 	//Inicializar MEF	
 	MEF_Init(10);	
 	//Inicializar Timer (para el reloj)
-	TIMER_Init((uint8_t)14,(uint8_t)59,(uint8_t)01);	
+	TIMER_Init((uint8_t)14,(uint8_t)59,(uint8_t)00);	
 	//Configurar Arq time-triggered
 	//La libreria interrumpe cada xxms
 	SEOS_Init();	
@@ -33,7 +33,5 @@ int main(void)
     {
        //realizar  tareas
        SEOS_Dispatch_Tasks();
-       //testing_timer();
-       //delay_ms(4);
     }
 }
