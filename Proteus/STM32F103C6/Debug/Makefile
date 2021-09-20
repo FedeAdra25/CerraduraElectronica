@@ -11,7 +11,7 @@ SHELL = C:\WINDOWS\system32\cmd.exe
 
 ## Tools general options
 ASMFLAGS=--cpu=cortex-m3 --thumb -g
-CCFLAGS=--cpu=cortex-m3 --thumb -I.. -I../../../../../../../../../Keil_v5/ARM/CMSIS/Include -g
+CCFLAGS=--cpu=cortex-m3 --thumb -I.. -IC:/Keil_v5/ARM/CMSIS/Include -g
 LDFLAGS=--scatter ../stm32f103x6.sct
 
 ## Processing Tools
@@ -19,25 +19,25 @@ CC=armcc.exe
 LD=armlink.exe
 ASM=armasm.exe
 BIN2HEX=fromelf.exe
-#  C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/Debug.elf: TOOL=LD
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/main.o: TOOL=CC
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/main.c
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/SYSTEM~1.o: TOOL=CC
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/system_stm32f1xx.c
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/STARTU~1.o: TOOL=ASM
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/startup_stm32f103.s
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/KEYPAD~1.o: TOOL=CC
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/keypadScan.c
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/lcd.o: TOOL=CC
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/lcd.c
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/MEF.o: TOOL=CC
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/MEF.c
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/seos.o: TOOL=CC
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/seos.c
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/timer.o: TOOL=CC
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/timer.c
-#     C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/Debug/utils.o: TOOL=CC
-#        C:/Users/Reino/Desktop/Taller de Proyecto I/TRABAJO PRACTICO 01/CerraduraElectronica/Proteus/STM32F103C6/utils.c
+#  H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/Debug.elf: TOOL=LD
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/main.o: TOOL=CC
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/main.c
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/SYSTEM~1.o: TOOL=CC
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/system_stm32f1xx.c
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/STARTU~1.o: TOOL=ASM
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/startup_stm32f103.s
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/KEYPAD~1.o: TOOL=CC
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/keypadScan.c
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/lcd.o: TOOL=CC
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/lcd.c
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/MEF.o: TOOL=CC
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/MEF.c
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/seos.o: TOOL=CC
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/seos.c
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/timer.o: TOOL=CC
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/timer.c
+#     H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/Debug/utils.o: TOOL=CC
+#        H:/Fede/Facultad/2021/2do cuatrimestre/Taller de proyecto I/Prácticas/Práctica 1/Project/Proteus/STM32F103C6/utils.c
 
 # Build tree:
 all:	Debug
