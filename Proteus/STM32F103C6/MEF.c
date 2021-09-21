@@ -24,7 +24,6 @@ static uint8_t key;
 static uint8_t claveIng[4];
 static uint8_t posClaveIng= 0;
 static uint32_t ticksPerSecond; //Se inicializa en el init
-static uint8_t actHora = 0; 
 static unsigned char* hora;
 static unsigned char horaAnt[8]="hh:mm:ss";
 //static uint8_t ingresoDig;
@@ -61,7 +60,6 @@ void MEF_Update (void)
 {
 	//Cuento el numero de interrupciones, para calcular el tiempo en cada estado
 	state_time++;
-	actHora++;
 	teclaPresionada= KEYPAD_Scan(&key);
 	switch (system_state)
 	{
@@ -137,7 +135,6 @@ void MEF_Update (void)
 			hora=TIMER_GetHora();
 			LCDGotoXY(4,0);
 			LCDstring(hora, 8);
-			actHora=0;
 		}		
 	}
 	/***************************************************************
@@ -230,7 +227,6 @@ void MEF_Update (void)
 	{
 		state_time=0;
 		posClaveIng=0;
-		actHora=0;
 		system_state= IDLE;
 		LCDcursorOFF();
 	}
