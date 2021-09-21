@@ -11,6 +11,7 @@
 #include "timer.h"
 #include "utils.h"
 #include <stdlib.h>
+#include <string.h>
 
 // Constantes
 //static const uint8_t lengthClaveAct=4;
@@ -25,6 +26,7 @@ static uint8_t posClaveIng= 0;
 static uint32_t ticksPerSecond; //Se inicializa en el init
 static uint8_t actHora = 0; 
 static unsigned char* hora;
+static unsigned char horaAnt[8]="hh:mm:ss";
 //static uint8_t ingresoDig;
 static uint8_t teclaPresionada=0;
 
@@ -128,9 +130,11 @@ void MEF_Update (void)
 			LCDGotoXY(4,1);
 			LCDstring((uint8_t*)"CERRADO",(uint8_t) 7);
 		}
-		if (actHora == ticksPerSecond)
+		hora = TIMER_GetHora();
+		if (strcmp(hora,horaAnt)!=0)
 		{
-			hora = TIMER_GetHora();
+			strcpy(horaAnt,hora);
+			hora=TIMER_GetHora();
 			LCDGotoXY(4,0);
 			LCDstring(hora, 8);
 			actHora=0;
